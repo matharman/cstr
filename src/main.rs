@@ -14,7 +14,7 @@ fn jsonstr_to_cstr(json: &str) -> String {
 
 fn json_to_c(json: &str, var_name: &str) {
     println!(
-        "const char {}[] = {};",
+        "const char {}[] = {};\n",
         var_name,
         jsonstr_to_cstr(json).trim()
     );
