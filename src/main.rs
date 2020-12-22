@@ -4,6 +4,22 @@ extern crate anyhow;
 use anyhow::Result;
 use std::env;
 use std::fs;
+use std::io::{self, BufRead};
+use std::path::PathBuf;
+use structopt::StructOpt;
+
+#[derive(Debug, StructOpt)]
+#[structopt(name = "json2cstr")]
+struct Opts {
+    #[structopt(short, long)]
+    stdin: bool,
+
+    #[structopt(name = "C variable name", default_value = "blob")]
+    var_name: String,
+
+    #[structopt(parse(from_os_str))]
+    files: Vec<PathBuf>,
+}
 
 fn jsonstr_to_cstr(json: &str) -> String {
     json.replace("\"", "\\\"")
@@ -30,15 +46,23 @@ fn file_to_var_name(path: &str) -> String {
 }
 
 fn main() -> Result<()> {
-    let argv: Vec<String> = env::args().collect();
-    if argv.len() < 2 {
-        return Err(anyhow!("Usage: json2cstr [JSON FILES]"));
-    }
+    let opts = Opts::from_args();
 
-    argv[1..].into_iter().for_each(|f| {
-        let json = fs::read_to_string(&f).expect("Invalid file");
-        json_to_c(json.trim(), &file_to_var_name(&f));
-    });
+    if opts.stdin {
+        let mut jsonvec: Vec<String> = Vec::new();
+        io::stdin()
+            .lock()
+            .lines()
+            .map(|l| l.unwrap())
+            .for_each(|l| jsonvec.push(l.to_owned()));
+        json_to_c(&jsonvec.join("\n"), &opts.var_name);
+    } else {
+        opts.files.into_iter().for_each(|f| {
+            let f = f.into_os_string().into_string().expect("Invalid path");
+            let json = fs::read_to_string(&f).expect("Invalid file");
+            json_to_c(json.trim(), &file_to_var_name(&f));
+        });
+    }
 
     Ok(())
 }
