@@ -48,6 +48,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "cstr"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "structopt",
+]
+
+[[package]]
 name = "heck"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -63,14 +71,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5aca5565f760fb5b220e499d72710ed156fdb74e631659e99377d9ebfbd13ae8"
 dependencies = [
  "libc",
-]
-
-[[package]]
-name = "json2cstr"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "structopt",
 ]
 
 [[package]]

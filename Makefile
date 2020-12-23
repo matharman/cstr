@@ -10,9 +10,9 @@ clean:
 	@cargo clean
 
 install: release
-	install target/release/json2cstr $(PREFIX)
+	install target/release/cstr $(PREFIX)
 
 install-strip: release
-	install -s target/release/json2cstr $(PREFIX)
+	install -s target/release/cstr $(PREFIX)
 
 .PHONY: all debug release clean install install-strip

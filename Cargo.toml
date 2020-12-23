@@ -1,5 +1,5 @@
 [package]
-name = "json2cstr"
+name = "cstr"
 version = "0.1.0"
 authors = ["Mathew Harman <mathew.harman@gmail.com>"]
 edition = "2018"
