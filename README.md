@@ -1,4 +1,6 @@
 # cstr
+You can *absolutely* accomplish exactly the same tasks as `cstr` with just `sed`; I wrote this just for fun to try Rust for scripting tasks.
+
 A simple script consuming plaintext files, transforming them into C strings (by escaping `"` and `\` characters), and printing them to stdout for other tools to consume. Useful for generating C language test cases for string data.
 
 ## Building & installing
