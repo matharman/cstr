@@ -10,7 +10,7 @@ To install a debuggable version, run `make install PREFIX=/install/path`. To ins
 
 For a list of JSON files: `json2cstr /path/to/file1.json /path/to/file2.json ...`
 
-For piping from stdin: `cat file1.json | json2cstr --stdin var_name`.
+For piping from stdin: `cat file1.json | json2cstr --stdin`.
 
 For this sample `fruit.json`:
 ````json
@@ -23,10 +23,9 @@ For this sample `fruit.json`:
 
 The output would be
 ````C
-const char var_name[] = "{"
+"{"
 "    \"fruit\": \"Apple\","
 "    \"size\": \"Large\","
 "    \"color\": \"Red\""
-"}";
-
+"}"
 ````
