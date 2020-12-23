@@ -1,5 +1,5 @@
 # cstr
-A simple script consuming plaintext files, transforming them into C strings (by escaping '"' and '\' characters), and printing them to stdout for other tools to consume. Useful for generating C language test cases for string data.
+A simple script consuming plaintext files, transforming them into C strings (by escaping `"` and `\` characters), and printing them to stdout for other tools to consume. Useful for generating C language test cases for string data.
 
 ## Building & installing
 A convenience Makefile is provided, but typical `cargo build` and `cargo install` commands also work.
